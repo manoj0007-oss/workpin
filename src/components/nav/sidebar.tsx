@@ -41,8 +41,8 @@ export function Sidebar({ role }: { role?: string }) {
     };
 
     return (
-        <aside className="hidden md:flex md:flex-col md:w-64 md:fixed md:inset-y-0 border-r bg-background z-40">
-            <div className="flex items-center h-16 px-6 border-b">
+        <aside className="hidden md:flex md:flex-col md:w-64 md:fixed md:inset-y-0 border-r bg-background z-30">
+            <div className="flex items-center h-14 px-6 border-b">
                 <LogoWithText size={28} />
             </div>
             <nav className="flex-1 px-3 py-4 space-y-1">

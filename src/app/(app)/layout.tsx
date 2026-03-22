@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Header } from "@/components/nav/header";
 import { BottomNav } from "@/components/nav/bottom-nav";
@@ -43,10 +43,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="min-h-screen">
             <Sidebar role={profile?.role} />
-            <Header />
-            <main className="md:ml-64 pb-20 md:pb-4">
-                {children}
-            </main>
+            <div className="md:ml-64 flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1 pb-20 md:pb-4">
+                    {children}
+                </main>
+            </div>
             <BottomNav role={profile?.role} />
         </div>
     );
