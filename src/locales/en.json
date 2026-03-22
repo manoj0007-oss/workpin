@@ -116,5 +116,11 @@
     "jobs_posted": "Jobs Posted",
     "jobs_completed": "Jobs Completed",
     "member_since": "Member since",
-    "close": "Close"
+    "close": "Close",
+    "invalid_email": "Please enter a valid email address",
+    "invalid_phone": "Please enter a valid 10-digit phone number",
+    "email_already_registered": "This email is already registered. Please sign in instead.",
+    "select_role_error": "Please select a role",
+    "account_created": "Account created!",
+    "accept_and_chat": "Accept & Open Chat"
 }

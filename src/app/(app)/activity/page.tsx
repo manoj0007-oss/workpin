@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useI18n } from "@/lib/i18n/context";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,6 +16,7 @@ import { PaymentDialog } from "@/components/payment/payment-dialog";
 
 export default function ActivityPage() {
     const { t } = useI18n();
+    const router = useRouter();
     const [requests, setRequests] = useState<JobRequest[]>([]);
     const [profile, setProfile] = useState<Profile | null>(null);
     const [rateJobId, setRateJobId] = useState<string | null>(null);
@@ -68,6 +70,8 @@ export default function ActivityPage() {
         } else {
             toast.success(t("request_accepted"));
             fetchData();
+            // Navigate to chat with this request
+            router.push(`/chat/${requestId}`);
         }
     };
 
@@ -152,10 +156,10 @@ export default function ActivityPage() {
                 {/* Action buttons for clients on pending requests */}
                 {profile?.role === "client" && req.status === "pending" && (
                     <div className="flex gap-2 pt-1">
-                        <Button size="sm" className="flex-1 gap-1" onClick={() => handleAccept(req.id)}>
-                            <Check className="h-4 w-4" /> {t("accept")}
+                        <Button size="sm" className="flex-1 gap-1.5 bg-green-600 hover:bg-green-700" onClick={() => handleAccept(req.id)}>
+                            <MessageSquare className="h-4 w-4" /> {t("accept_and_chat")}
                         </Button>
-                        <Button size="sm" variant="outline" className="flex-1 gap-1" onClick={() => handleReject(req.id)}>
+                        <Button size="sm" variant="outline" className="gap-1" onClick={() => handleReject(req.id)}>
                             <X className="h-4 w-4" /> {t("reject")}
                         </Button>
                     </div>
