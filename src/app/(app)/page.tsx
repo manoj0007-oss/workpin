@@ -8,7 +8,9 @@ import { MapView } from "@/components/map/map-view";
 import { ListView } from "@/components/map/list-view";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Map, List, SlidersHorizontal } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
+import { Map, List, SlidersHorizontal, User, Star, Phone } from "lucide-react";
 import { haversineDistance } from "@/lib/geo";
 import type { Job, Profile } from "@/lib/types";
 import { useRouter } from "next/navigation";
@@ -24,6 +26,7 @@ export default function HomePage() {
     const [workers, setWorkers] = useState<Profile[]>([]);
     const [profile, setProfile] = useState<Profile | null>(null);
     const [showRadius, setShowRadius] = useState(false);
+    const [selectedWorker, setSelectedWorker] = useState<Profile | null>(null);
 
     useEffect(() => {
         const init = async () => {
@@ -110,6 +113,10 @@ export default function HomePage() {
         router.push(`/jobs/${job.id}`);
     };
 
+    const handleWorkerClick = (worker: Profile) => {
+        setSelectedWorker(worker);
+    };
+
     if (!location) {
         return <LocationPrompt onLocationGranted={handleLocationGranted} />;
     }
@@ -175,12 +182,63 @@ export default function HomePage() {
                         workers={workers}
                         radius={radius}
                         onJobClick={handleJobClick}
+                        onWorkerClick={handleWorkerClick}
                         userRole={profile?.role}
                     />
                 </div>
             ) : (
                 <ListView jobs={jobs} onJobClick={handleJobClick} />
             )}
+
+            {/* Worker profile sheet */}
+            <Sheet open={!!selectedWorker} onOpenChange={(open) => { if (!open) setSelectedWorker(null); }}>
+              <SheetContent side="bottom" className="rounded-t-2xl max-h-[70vh]">
+                <SheetHeader>
+                  <SheetTitle>{t("profile")}</SheetTitle>
+                </SheetHeader>
+                {selectedWorker && (
+                  <div className="space-y-5 pb-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                        <User className="h-8 w-8 text-primary" />
+                      </div>
+                      <div>
+                        <h2 className="text-lg font-bold">{selectedWorker.full_name}</h2>
+                        <div className="flex items-center gap-2 mt-1">
+                          <div className={cn(
+                            "w-2 h-2 rounded-full",
+                            selectedWorker.is_available ? "bg-green-500" : "bg-gray-400"
+                          )} />
+                          <span className="text-sm text-muted-foreground">
+                            {selectedWorker.is_available ? t("available") : t("not_available")}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <Separator />
+                    <div className="space-y-3">
+                      {selectedWorker.phone && (
+                        <div className="flex items-center gap-3">
+                          <Phone className="h-4 w-4 text-muted-foreground" />
+                          <a href={`tel:${selectedWorker.phone}`} className="text-sm text-primary font-medium">
+                            {selectedWorker.phone}
+                          </a>
+                        </div>
+                      )}
+                      {selectedWorker.rating_avg > 0 && (
+                        <div className="flex items-center gap-3">
+                          <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                          <span className="text-sm font-medium">{selectedWorker.rating_avg.toFixed(1)} / 5</span>
+                        </div>
+                      )}
+                      <div className="text-xs text-muted-foreground">
+                        {t("member_since")} {new Date(selectedWorker.created_at).toLocaleDateString()}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </SheetContent>
+            </Sheet>
         </div>
     );
 }

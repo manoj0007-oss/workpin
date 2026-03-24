@@ -12,10 +12,11 @@ interface MapViewProps {
     workers?: Profile[];
     radius: number; // in km
     onJobClick?: (job: Job) => void;
+    onWorkerClick?: (worker: Profile) => void;
     userRole?: string;
 }
 
-export function MapView({ center, jobs, workers = [], radius, onJobClick, userRole }: MapViewProps) {
+export function MapView({ center, jobs, workers = [], radius, onJobClick, onWorkerClick, userRole }: MapViewProps) {
     const mapContainer = useRef<HTMLDivElement>(null);
     const map = useRef<mapboxgl.Map | null>(null);
     const markersRef = useRef<mapboxgl.Marker[]>([]);
@@ -91,12 +92,15 @@ export function MapView({ center, jobs, workers = [], radius, onJobClick, userRo
                 if (dist > radius) return;
 
                 const el = document.createElement("div");
+                el.style.cssText = "cursor:pointer;";
                 el.innerHTML = `
           <div style="background:${worker.is_available ? '#22c55e' : '#f59e0b'};color:white;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2);">
             ${worker.full_name.split(" ")[0]} • ${formatDistance(dist)}
             ${!worker.is_available ? '<span style="font-size:10px;opacity:0.8;"> (busy)</span>' : ''}
           </div>
         `;
+
+                el.addEventListener("click", () => onWorkerClick?.(worker));
 
                 const marker = new mapboxgl.Marker({ element: el })
                     .setLngLat([worker.lng, worker.lat])
@@ -105,7 +109,7 @@ export function MapView({ center, jobs, workers = [], radius, onJobClick, userRo
                 markersRef.current.push(marker);
             });
         }
-    }, [jobs, workers, center, radius, onJobClick, userRole, clearMarkers]);
+    }, [jobs, workers, center, radius, onJobClick, onWorkerClick, userRole, clearMarkers]);
 
     return (
         <div ref={mapContainer} className="w-full h-[calc(100vh-12rem)] md:h-[calc(100vh-8rem)] rounded-xl overflow-hidden" />
