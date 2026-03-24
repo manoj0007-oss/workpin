@@ -81,7 +81,7 @@ export default function JobDetailPage() {
     if (error) {
       toast.error(error.message);
     } else {
-      setJob({ ...job, pay: newFare });
+      setJob({ ...job, pay: String(newFare) });
       setEditingFare(false);
       toast.success(t("save") + " ✓");
     }
