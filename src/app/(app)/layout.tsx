@@ -41,11 +41,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <div className="min-h-screen">
+        <div className="h-[100dvh] flex flex-col overflow-hidden">
             <Sidebar role={profile?.role} />
-            <div className="md:ml-64 flex flex-col min-h-screen">
+            <div className="md:ml-64 flex flex-col flex-1 min-h-0">
                 <Header />
-                <main className="flex-1 pb-20 md:pb-4">
+                <main className="flex-1 overflow-y-auto pb-16 md:pb-2">
                     {children}
                 </main>
             </div>
