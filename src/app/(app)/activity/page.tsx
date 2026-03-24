@@ -22,6 +22,7 @@ export default function ActivityPage() {
     const [rateJobId, setRateJobId] = useState<string | null>(null);
     const [rateWorkerId, setRateWorkerId] = useState<string | null>(null);
     const [payJobId, setPayJobId] = useState<string | null>(null);
+    const [payAmount, setPayAmount] = useState<number>(0);
 
     const fetchData = async () => {
         const supabase = createClient();
@@ -92,6 +93,9 @@ export default function ActivityPage() {
     const handleCompleteJob = async (jobId: string, workerId: string) => {
         const supabase = createClient();
         await supabase.from("jobs").update({ status: "completed" }).eq("id", jobId);
+        // Get pay amount from the request's job
+        const req = requests.find((r) => r.job_id === jobId && r.worker_id === workerId);
+        setPayAmount(Number(req?.job?.pay) || 0);
         setPayJobId(jobId);
         setRateJobId(jobId);
         setRateWorkerId(workerId);
@@ -209,6 +213,7 @@ export default function ActivityPage() {
             <PaymentDialog
                 open={!!payJobId && !rateJobId}
                 onOpenChange={(open) => { if (!open) setPayJobId(null); }}
+                amount={payAmount}
             />
         </div>
     );
