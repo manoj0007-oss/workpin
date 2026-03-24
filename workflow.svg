@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="700" fill="#fafafa" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#1e293b">Workpin Application Flow Cycle</text>
+
+  <!--
+    8 steps arranged in a circle, center at (350, 380), radius ~200
+    Angles (starting from top, going clockwise):
+    0: 270°  Sign Up
+    1: 315°  Post / Browse Jobs
+    2: 0°    Discover on Map
+    3: 45°   Apply for Job
+    4: 90°   Accept Worker
+    5: 135°  Chat in Real-Time
+    6: 180°  Complete Job
+    7: 225°  Rate & Pay
+  -->
+
+  <!-- Positions (cx, cy) for each step -->
+  <!-- 0: top          (350, 140) -->
+  <!-- 1: top-right    (545, 190) -->
+  <!-- 2: right        (600, 380) -->
+  <!-- 3: bottom-right (545, 560) -->
+  <!-- 4: bottom       (350, 610) -->
+  <!-- 5: bottom-left  (155, 560) -->
+  <!-- 6: left         (100, 380) -->
+  <!-- 7: top-left     (155, 190) -->
+
+  <!-- ===== CURVED ARROWS (clockwise arcs between steps) ===== -->
+  <g fill="none" stroke="#cbd5e1" stroke-width="2" marker-end="url(#arw)">
+    <!-- 0→1 -->
+    <path d="M 385,155 Q 440,140 510,175"/>
+    <!-- 1→2 -->
+    <path d="M 570,220 Q 610,270 605,345"/>
+    <!-- 2→3 -->
+    <path d="M 605,415 Q 610,490 570,535"/>
+    <!-- 3→4 -->
+    <path d="M 515,580 Q 460,610 390,615"/>
+    <!-- 4→5 -->
+    <path d="M 315,615 Q 240,610 185,580"/>
+    <!-- 5→6 -->
+    <path d="M 135,535 Q 95,490 95,415"/>
+    <!-- 6→7 -->
+    <path d="M 100,345 Q 95,270 130,220"/>
+    <!-- 7→0 -->
+    <path d="M 190,175 Q 260,140 315,155"/>
+  </g>
+
+  <!-- ===== STEP 0: Sign Up (top) ===== -->
+  <g transform="translate(350,130)">
+    <!-- Person + key icon -->
+    <circle cx="-8" cy="-22" r="7" fill="none" stroke="#f59e0b" stroke-width="2"/>
+    <path d="M-18,-10 Q-8,-2 2,-10" fill="none" stroke="#f59e0b" stroke-width="2"/>
+    <rect x="8" y="-26" width="10" height="6" rx="2" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+    <line x1="13" y1="-20" x2="13" y2="-14" stroke="#f59e0b" stroke-width="1.5"/>
+    <line x1="13" y1="-16" x2="16" y2="-16" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="0" y="14" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Sign Up</text>
+    <text x="0" y="28" text-anchor="middle" font-size="10" fill="#64748b">(Worker / Client)</text>
+  </g>
+
+  <!-- ===== STEP 1: Post / Browse Jobs (top-right) ===== -->
+  <g transform="translate(545,185)">
+    <!-- Clipboard icon -->
+    <rect x="-14" y="-30" width="20" height="26" rx="3" fill="none" stroke="#22c55e" stroke-width="2"/>
+    <rect x="-10" y="-34" width="12" height="6" rx="2" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+    <line x1="-8" y1="-20" x2="0" y2="-20" stroke="#22c55e" stroke-width="1.5"/>
+    <line x1="-8" y1="-14" x2="2" y2="-14" stroke="#22c55e" stroke-width="1.5"/>
+    <line x1="-8" y1="-8" x2="-2" y2="-8" stroke="#22c55e" stroke-width="1.5"/>
+    <text x="0" y="14" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Post / Browse</text>
+    <text x="0" y="28" text-anchor="middle" font-size="10" fill="#64748b">Jobs</text>
+  </g>
+
+  <!-- ===== STEP 2: Discover on Map (right) ===== -->
+  <g transform="translate(600,375)">
+    <!-- Map pin icon -->
+    <path d="M0,-28 a12,12 0 1,1 0,0.01" fill="none" stroke="#6366f1" stroke-width="2"/>
+    <circle cx="0" cy="-22" r="4" fill="#6366f1" opacity="0.4"/>
+    <path d="M0,-16 L0,-6" stroke="#6366f1" stroke-width="2"/>
+    <circle cx="0" cy="-5" r="1.5" fill="#6366f1"/>
+    <text x="0" y="14" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Discover</text>
+    <text x="0" y="28" text-anchor="middle" font-size="10" fill="#64748b">on Map</text>
+  </g>
+
+  <!-- ===== STEP 3: Apply for Job (bottom-right) ===== -->
+  <g transform="translate(545,555)">
+    <!-- Hand/tap icon -->
+    <path d="M-5,-28 L-5,-14" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M-5,-14 Q-5,-8 2,-10 L8,-12 Q14,-14 14,-8 L14,0 Q14,6 8,6 L-8,6 Q-14,6 -14,0 L-14,-10 Q-14,-14 -10,-14" fill="none" stroke="#ec4899" stroke-width="1.5"/>
+    <text x="0" y="22" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Apply for</text>
+    <text x="0" y="36" text-anchor="middle" font-size="10" fill="#64748b">Job</text>
+  </g>
+
+  <!-- ===== STEP 4: Accept Worker (bottom) ===== -->
+  <g transform="translate(350,605)">
+    <!-- Checkmark circle icon -->
+    <circle cx="0" cy="-20" r="14" fill="none" stroke="#14b8a6" stroke-width="2"/>
+    <polyline points="-6,-20 -2,-15 8,-25" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="0" y="10" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Accept</text>
+    <text x="0" y="24" text-anchor="middle" font-size="10" fill="#64748b">Worker</text>
+  </g>
+
+  <!-- ===== STEP 5: Chat in Real-Time (bottom-left) ===== -->
+  <g transform="translate(155,555)">
+    <!-- Chat bubble icon -->
+    <rect x="-16" y="-32" width="26" height="18" rx="4" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+    <path d="M-6,-14 L-10,-6 L-2,-14" fill="none" stroke="#0ea5e9" stroke-width="1.5"/>
+    <circle cx="-8" cy="-23" r="1.5" fill="#0ea5e9"/>
+    <circle cx="-2" cy="-23" r="1.5" fill="#0ea5e9"/>
+    <circle cx="4" cy="-23" r="1.5" fill="#0ea5e9"/>
+    <text x="0" y="12" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Chat in</text>
+    <text x="0" y="26" text-anchor="middle" font-size="10" fill="#64748b">Real-Time</text>
+  </g>
+
+  <!-- ===== STEP 6: Complete Job (left) ===== -->
+  <g transform="translate(100,375)">
+    <!-- Flag/finish icon -->
+    <line x1="-6" y1="-32" x2="-6" y2="-2" stroke="#f97316" stroke-width="2"/>
+    <path d="M-6,-32 L14,-26 L-6,-18" fill="#f97316" opacity="0.3" stroke="#f97316" stroke-width="1.5"/>
+    <text x="0" y="14" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Complete</text>
+    <text x="0" y="28" text-anchor="middle" font-size="10" fill="#64748b">Job</text>
+  </g>
+
+  <!-- ===== STEP 7: Rate & Pay (top-left) ===== -->
+  <g transform="translate(155,185)">
+    <!-- Star icon -->
+    <polygon points="0,-32 4,-22 14,-22 6,-16 9,-6 0,-12 -9,-6 -6,-16 -14,-22 -4,-22" fill="#eab308" opacity="0.3" stroke="#eab308" stroke-width="1.5"/>
+    <text x="0" y="10" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Rate &amp; Pay</text>
+    <text x="0" y="24" text-anchor="middle" font-size="10" fill="#64748b">(UPI / Cash)</text>
+  </g>
+
+  <!-- Center logo/brand -->
+  <g transform="translate(350,380)">
+    <circle cx="0" cy="0" r="48" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="0" y="-6" text-anchor="middle" font-size="22" fill="#1e293b">📍</text>
+    <text x="0" y="16" text-anchor="middle" font-size="14" font-weight="700" fill="#0891b2">Workpin</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="690" y="690" text-anchor="end" font-size="10" fill="#cbd5e1">Workpin Workflow · Next.js 16 + Supabase</text>
+</svg>
