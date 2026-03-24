@@ -115,8 +115,9 @@ export default function ChatRoomPage() {
         </Button>
 
         <Sheet>
-          <SheetTrigger asChild>
-            <button className="flex items-center gap-3 flex-1 min-w-0 text-left hover:opacity-80 transition-opacity cursor-pointer">
+          <SheetTrigger
+            render={<button className="flex items-center gap-3 flex-1 min-w-0 text-left hover:opacity-80 transition-opacity cursor-pointer" />}
+          >
               <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                 <User className="h-4 w-4 text-primary" />
               </div>
@@ -126,7 +127,6 @@ export default function ChatRoomPage() {
                   <p className="text-xs text-muted-foreground truncate">{jobTitle}</p>
                 )}
               </div>
-            </button>
           </SheetTrigger>
           <SheetContent side="right" className="w-80">
             <SheetHeader>
@@ -164,10 +164,10 @@ export default function ChatRoomPage() {
                   <div className="flex items-center gap-3 px-2">
                     <div className={cn(
                       "w-2.5 h-2.5 rounded-full",
-                      otherUser.available ? "bg-green-500" : "bg-gray-400"
+                      otherUser.is_available ? "bg-green-500" : "bg-gray-400"
                     )} />
                     <span className="text-sm">
-                      {otherUser.available ? t("available") : t("not_available")}
+                      {otherUser.is_available ? t("available") : t("not_available")}
                     </span>
                   </div>
                 )}
