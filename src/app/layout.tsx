@@ -47,14 +47,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <I18nProvider>
-            <div className="text-center py-1 px-2 text-[10px] text-muted-foreground/50 leading-tight select-none">
+            <div className="text-center py-1.5 px-2 text-[10px] text-muted-foreground/50 leading-relaxed select-none">
               <p>Gayatri Vidya Parishad College for Degree And PG Courses</p>
-              <p className="text-[9px]">T. Sai Venkata Sita Rama Swamy, S. Bhuvana, V. Ravindra, P. Manoj Mithra, P. Navadeep, S. Prasanna Kumar</p>
+              <p><span className="font-semibold">Team :</span> T. Sai, S. Bhuvana, V. Ravindra, P. Manoj, P. Navadeep, S. Prasanna</p>
+              <p><span className="font-semibold">Guided by</span> Mr. Sri T. SriKrishna</p>
             </div>
             <div className="flex-1 flex flex-col">{children}</div>
-            <div className="text-center py-1 px-2 text-[9px] text-muted-foreground/40 select-none">
-              Guided by Mr. Sri T. Sri Krishna
-            </div>
             <Toaster position="top-center" richColors closeButton />
             <ServiceWorkerRegistrar />
           </I18nProvider>
