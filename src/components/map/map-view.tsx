@@ -43,7 +43,7 @@ export function MapView({ center, jobs, workers = [], radius, onJobClick, onWork
         // User marker
         const userEl = document.createElement("div");
         userEl.className = "user-marker";
-        userEl.innerHTML = `<div style="width:20px;height:20px;background:#6366f1;border:3px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>`;
+        userEl.innerHTML = `<div style="width:20px;height:20px;background:#1352ab;border:3px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>`;
         new mapboxgl.Marker({ element: userEl })
             .setLngLat(center)
             .addTo(map.current);
@@ -68,7 +68,7 @@ export function MapView({ center, jobs, workers = [], radius, onJobClick, onWork
                 const el = document.createElement("div");
                 el.style.cssText = "cursor:pointer;";
                 el.innerHTML = `
-          <div style="background:#6366f1;color:white;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2);display:flex;align-items:center;gap:4px;">
+          <div style="background:#1352ab;color:white;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2);display:flex;align-items:center;gap:4px;">
             <span>₹${job.pay}</span>
             <span style="opacity:0.7;font-size:10px;">• ${formatDistance(dist)}</span>
           </div>

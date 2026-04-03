@@ -13,14 +13,14 @@ export function Logo({ className = "", size = 32 }: { className?: string; size?:
             {/* Map pin shape */}
             <path
                 d="M24 4C16.268 4 10 10.268 10 18c0 10.5 14 26 14 26s14-15.5 14-26c0-7.732-6.268-14-14-14z"
-                fill="#6366f1"
+                fill="#1352ab"
             />
             {/* Inner circle */}
             <circle cx="24" cy="18" r="8" fill="white" opacity="0.95" />
             {/* W letterform */}
             <path
                 d="M19 14l2.5 8 2.5-5 2.5 5 2.5-8"
-                stroke="#6366f1"
+                stroke="#1352ab"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
